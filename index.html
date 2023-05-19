@@ -18,19 +18,22 @@
   </style>
 </head>
 <body>
-  <img src="your_gif.GIF" id="image">
+  <img src="your_gif.gif" id="image">
   <canvas id="canvas"></canvas>
 
   <script>
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     const image = document.getElementById('image');
-    image.onload = function() {
-      canvas.width = this.naturalWidth;
-      canvas.height = this.naturalHeight;
-      ctx.fillStyle = 'black';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const coverImage = new Image();
+
+    coverImage.onload = function() {
+      canvas.width = image.naturalWidth;
+      canvas.height = image.naturalHeight;
+      ctx.drawImage(coverImage, 0, 0, canvas.width, canvas.height);
     }
+
+    coverImage.src = 'coverImage.jpg';
 
     let painting = false;
 
